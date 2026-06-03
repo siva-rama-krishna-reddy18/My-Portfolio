@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Siva Portfolio</title>
+<title>SR Krishna Reddy — AI & Cloud Engineer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -137,7 +137,7 @@ nav {
   color: #FB923C;
   margin-bottom: 22px; letter-spacing: -0.3px;
   display: flex; align-items: center; gap: 2px;
-  height: 30px; min-height: 30px; overflow: hidden;
+  height: 30px; min-height:30px; overflow: hidden;
 }
 .typed-text { color: #FB923C; border-right: 2px solid #FB923C; white-space: nowrap; overflow: hidden; animation: cursor-blink 0.7s step-end infinite; text-shadow: 0 0 8px rgba(251,146,60,0.6), 0 0 20px rgba(251,146,60,0.3); }
 @keyframes cursor-blink { 0%,100%{border-color:#FB923C} 50%{border-color:transparent} }
@@ -597,6 +597,232 @@ footer p { font-size: 12.5px; color: #888888; }
 .ai-line { stroke:rgba(251,146,60,0.1); stroke-width:1; fill:none; stroke-dasharray:4 6; animation:lineDash 3s linear infinite; }
 @keyframes lineDash { to { stroke-dashoffset:-20; } }
 
+/* ─── AI CHATBOT ─────────────────────────── */
+.cb-launcher {
+  position: fixed; bottom: 88px; right: 28px; z-index: 600;
+  width: 60px; height: 60px; border-radius: 50%;
+  background: linear-gradient(135deg, #FB923C 0%, #EA580C 100%);
+  border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 8px 28px rgba(251,146,60,0.45), 0 2px 6px rgba(0,0,0,0.3);
+  transition: transform .25s cubic-bezier(.34,1.56,.64,1), box-shadow .25s;
+}
+.cb-launcher:hover { transform: scale(1.08); box-shadow: 0 12px 36px rgba(251,146,60,0.6), 0 4px 10px rgba(0,0,0,0.4); }
+.cb-launcher:active { transform: scale(0.95); }
+.cb-launcher svg { width: 30px; height: 30px; fill: #fff; transition: transform .3s; }
+.cb-launcher .cb-icon-close { display: none; }
+.cb-launcher.open .cb-icon-chat { display: none; }
+.cb-launcher.open .cb-icon-close { display: block; }
+.cb-pulse {
+  position: absolute; inset: 0; border-radius: 50%;
+  border: 2px solid #FB923C; opacity: 0;
+  animation: cbPulse 2.4s ease-out infinite;
+}
+@keyframes cbPulse { 0%{transform:scale(1);opacity:.6} 100%{transform:scale(1.7);opacity:0} }
+.cb-badge {
+  position: absolute; top: -2px; right: -2px;
+  min-width: 20px; height: 20px; padding: 0 6px;
+  background: #4ADE80; color: #052e16;
+  border-radius: 10px; font-size: 11px; font-weight: 800;
+  display: flex; align-items: center; justify-content: center;
+  border: 2px solid #0A0A0A;
+  animation: cbBadgePop .5s cubic-bezier(.34,1.56,.64,1);
+}
+.cb-launcher.open .cb-badge { display: none; }
+@keyframes cbBadgePop { 0%{transform:scale(0)} 100%{transform:scale(1)} }
+.cb-tooltip {
+  position: absolute; right: 74px; top: 50%; transform: translateY(-50%) translateX(6px);
+  background: #1A1A1A; color: #E8E8E8;
+  padding: 9px 14px; border-radius: 10px; font-size: 13px; font-weight: 500;
+  white-space: nowrap; opacity: 0; pointer-events: none;
+  transition: opacity .25s, transform .25s;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+  border: 1px solid #2A2A2A;
+}
+.cb-tooltip::after {
+  content: ''; position: absolute; right: -5px; top: 50%; transform: translateY(-50%);
+  border: 5px solid transparent; border-left-color: #1A1A1A;
+}
+.cb-launcher:hover .cb-tooltip { opacity: 1; transform: translateY(-50%) translateX(0); }
+.cb-launcher.open .cb-tooltip { display: none; }
+
+.cb-window {
+  position: fixed; bottom: 164px; right: 28px; z-index: 599;
+  width: 380px; max-width: calc(100vw - 32px);
+  height: 560px; max-height: calc(100vh - 200px);
+  background: #141414; border: 1px solid #2A2A2A;
+  border-radius: 18px; overflow: hidden; display: none;
+  flex-direction: column; box-shadow: 0 20px 60px rgba(0,0,0,0.6), 0 4px 12px rgba(0,0,0,0.4);
+  animation: cbSlideUp .35s cubic-bezier(.22,1,.36,1);
+  font-family: 'Sora', sans-serif;
+}
+.cb-window.open { display: flex; }
+@keyframes cbSlideUp {
+  from { opacity: 0; transform: translateY(20px) scale(0.95); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+.cb-header {
+  padding: 16px 18px;
+  background: linear-gradient(135deg, #1A1A1A 0%, #161616 100%);
+  border-bottom: 1px solid #2A2A2A;
+  display: flex; align-items: center; gap: 12px;
+}
+.cb-avatar {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: linear-gradient(135deg, #FB923C 0%, #EA580C 100%);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; flex-shrink: 0;
+  box-shadow: 0 0 0 3px rgba(251,146,60,0.2);
+  position: relative;
+}
+.cb-avatar::after {
+  content: ''; position: absolute; bottom: 0; right: 0;
+  width: 10px; height: 10px; background: #4ADE80;
+  border-radius: 50%; border: 2px solid #141414;
+}
+.cb-header-info { flex: 1; min-width: 0; }
+.cb-header-name { font-size: 14px; font-weight: 700; color: #E8E8E8; line-height: 1.2; }
+.cb-header-status { font-size: 11.5px; color: #4ADE80; font-weight: 500; display: flex; align-items: center; gap: 5px; margin-top: 1px; }
+.cb-header-status::before {
+  content: ''; width: 6px; height: 6px; background: #4ADE80;
+  border-radius: 50%; animation: blink 1.5s infinite;
+}
+.cb-header-btn {
+  background: none; border: none; cursor: pointer;
+  color: #888; padding: 6px; border-radius: 6px;
+  transition: all .2s; display: flex; align-items: center; justify-content: center;
+}
+.cb-header-btn:hover { color: #FB923C; background: #2A2A2A; }
+.cb-header-btn svg { width: 16px; height: 16px; }
+
+.cb-messages {
+  flex: 1; overflow-y: auto; padding: 18px;
+  display: flex; flex-direction: column; gap: 12px;
+  scroll-behavior: smooth;
+  background: #0F0F0F;
+}
+.cb-messages::-webkit-scrollbar { width: 6px; }
+.cb-messages::-webkit-scrollbar-track { background: transparent; }
+.cb-messages::-webkit-scrollbar-thumb { background: #2A2A2A; border-radius: 3px; }
+.cb-messages::-webkit-scrollbar-thumb:hover { background: #3A3A3A; }
+
+.cb-msg { display: flex; gap: 8px; max-width: 88%; animation: cbMsgIn .35s cubic-bezier(.22,1,.36,1); }
+@keyframes cbMsgIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.cb-msg.user { align-self: flex-end; flex-direction: row-reverse; }
+.cb-msg-avatar {
+  width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center; font-size: 13px;
+  background: #2A2A2A; color: #E8E8E8;
+  align-self: flex-end;
+}
+.cb-msg.bot .cb-msg-avatar {
+  background: linear-gradient(135deg, #FB923C 0%, #EA580C 100%);
+}
+.cb-msg-bubble {
+  padding: 10px 14px; border-radius: 14px;
+  font-size: 13.5px; line-height: 1.55;
+  word-wrap: break-word; white-space: pre-wrap;
+}
+.cb-msg.bot .cb-msg-bubble {
+  background: #1A1A1A; color: #E0E0E0;
+  border-bottom-left-radius: 4px;
+  border: 1px solid #252525;
+}
+.cb-msg.user .cb-msg-bubble {
+  background: linear-gradient(135deg, #FB923C 0%, #EA580C 100%);
+  color: #fff;
+  border-bottom-right-radius: 4px;
+}
+.cb-msg-bubble strong { color: #FB923C; font-weight: 700; }
+.cb-msg.bot .cb-msg-bubble strong { color: #FB923C; }
+.cb-msg-bubble a { color: #FB923C; text-decoration: none; font-weight: 600; }
+.cb-msg-bubble a:hover { text-decoration: underline; }
+.cb-msg-bubble code {
+  background: #252525; color: #FB923C;
+  padding: 1px 6px; border-radius: 4px;
+  font-family: 'Courier New', monospace; font-size: 12px;
+}
+.cb-msg-bubble ul, .cb-msg-bubble ol { margin: 4px 0 4px 18px; }
+.cb-msg-bubble li { margin: 2px 0; }
+.cb-msg-bubble br + br { display: block; content: ''; margin-top: 2px; }
+
+.cb-typing { display: flex; gap: 4px; padding: 4px 0; align-items: center; }
+.cb-typing span {
+  width: 7px; height: 7px; background: #888; border-radius: 50%;
+  animation: cbTyping 1.2s ease-in-out infinite;
+}
+.cb-typing span:nth-child(2) { animation-delay: 0.15s; }
+.cb-typing span:nth-child(3) { animation-delay: 0.3s; }
+@keyframes cbTyping {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+  30% { transform: translateY(-6px); opacity: 1; }
+}
+
+.cb-suggestions {
+  display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px;
+}
+.cb-suggestion {
+  background: #1A1A1A; color: #FB923C;
+  border: 1px solid #2A2A2A; border-radius: 14px;
+  padding: 6px 12px; font-size: 11.5px; font-weight: 500;
+  cursor: pointer; transition: all .2s;
+  font-family: 'Sora', sans-serif;
+}
+.cb-suggestion:hover { background: #FB923C; color: #fff; border-color: #FB923C; transform: translateY(-1px); }
+
+.cb-quick-replies {
+  padding: 10px 14px; border-top: 1px solid #2A2A2A;
+  background: #141414;
+  display: flex; gap: 6px; flex-wrap: wrap;
+}
+.cb-quick-reply {
+  background: #1A1A1A; color: #E0E0E0;
+  border: 1px solid #2A2A2A; border-radius: 16px;
+  padding: 6px 12px; font-size: 11.5px; font-weight: 500;
+  cursor: pointer; transition: all .2s;
+  font-family: 'Sora', sans-serif;
+  display: inline-flex; align-items: center; gap: 5px;
+}
+.cb-quick-reply:hover { background: #252525; border-color: #FB923C; color: #FB923C; }
+.cb-quick-reply-icon { font-size: 12px; }
+
+.cb-input-wrap {
+  padding: 12px 14px;
+  background: #141414; border-top: 1px solid #2A2A2A;
+  display: flex; gap: 8px; align-items: center;
+}
+.cb-input {
+  flex: 1; background: #1A1A1A; border: 1.5px solid #2A2A2A;
+  color: #E8E8E8; padding: 10px 14px;
+  border-radius: 12px; font-size: 13.5px;
+  font-family: 'Sora', sans-serif; outline: none;
+  transition: border-color .2s;
+}
+.cb-input::placeholder { color: #666; }
+.cb-input:focus { border-color: #FB923C; }
+.cb-send {
+  width: 40px; height: 40px; border-radius: 12px;
+  background: linear-gradient(135deg, #FB923C 0%, #EA580C 100%);
+  border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: all .2s; flex-shrink: 0;
+}
+.cb-send:hover { transform: scale(1.05); box-shadow: 0 4px 12px rgba(251,146,60,0.4); }
+.cb-send:active { transform: scale(0.95); }
+.cb-send:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+.cb-send svg { width: 18px; height: 18px; fill: #fff; }
+
+.cb-welcome {
+  text-align: center; padding: 16px 8px;
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+}
+.cb-welcome-icon { font-size: 38px; }
+.cb-welcome h4 { color: #E8E8E8; font-size: 16px; font-weight: 700; margin: 0; }
+.cb-welcome p { color: #888; font-size: 12.5px; margin: 0; line-height: 1.5; max-width: 280px; }
+
 /* ─── RESPONSIVE ──────────────────────────── */
 @media (max-width: 900px) {
   nav { padding: 0 20px; }
@@ -619,7 +845,74 @@ footer p { font-size: 12.5px; color: #888888; }
   .hero-social { flex-wrap: wrap; gap: 8px; }
   .hero-meta { gap: 16px; }
   .contact-inner { padding: 0; }
+  .cb-launcher { bottom: 84px; right: 18px; width: 54px; height: 54px; }
+  .cb-window { bottom: 152px; right: 18px; left: 18px; width: auto; max-width: none; height: 70vh; max-height: 540px; }
+  .cb-tooltip { display: none; }
+  .ai-canvas { display: none; }
+  .hero-photo-wrap { margin-top: 0; }
 }
+
+/* ─── API KEY MODAL ───────────────────── */
+.cb-key-modal {
+  position: fixed; inset: 0; z-index: 700;
+  background: rgba(0,0,0,0.75);
+  backdrop-filter: blur(8px);
+  display: none; align-items: center; justify-content: center;
+  padding: 20px;
+  animation: cbFadeIn .25s ease;
+}
+.cb-key-modal.open { display: flex; }
+@keyframes cbFadeIn { from{opacity:0} to{opacity:1} }
+.cb-key-box {
+  background: #141414; border: 1px solid #2A2A2A; border-radius: 18px;
+  padding: 32px 28px; max-width: 460px; width: 100%;
+  position: relative; box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+  animation: cbSlideUp .35s cubic-bezier(.22,1,.36,1);
+  font-family: 'Sora', sans-serif;
+}
+.cb-key-close {
+  position: absolute; top: 12px; right: 14px;
+  background: none; border: none; color: #888;
+  font-size: 24px; cursor: pointer; line-height: 1;
+  padding: 4px 8px; border-radius: 6px;
+}
+.cb-key-close:hover { color: #FB923C; background: #1A1A1A; }
+.cb-key-icon { font-size: 44px; text-align: center; margin-bottom: 8px; }
+.cb-key-box h3 { color: #E8E8E8; font-size: 20px; font-weight: 800; margin: 0 0 8px; text-align: center; letter-spacing: -0.4px; }
+.cb-key-box p { color: #AAA; font-size: 13px; line-height: 1.55; margin: 0 0 14px; text-align: center; }
+.cb-key-box p strong { color: #FB923C; }
+.cb-key-steps {
+  background: #1A1A1A; border: 1px solid #2A2A2A; border-radius: 10px;
+  padding: 12px 14px 12px 30px; margin: 0 0 16px;
+  font-size: 12.5px; color: #C0C0C0; line-height: 1.6;
+}
+.cb-key-steps li { margin: 3px 0; }
+.cb-key-steps a { color: #FB923C; font-weight: 600; text-decoration: none; }
+.cb-key-steps a:hover { text-decoration: underline; }
+.cb-key-steps code {
+  background: #252525; color: #FB923C; padding: 1px 6px; border-radius: 4px;
+  font-family: 'Courier New', monospace; font-size: 12px;
+}
+.cb-key-input {
+  width: 100%; padding: 12px 14px; margin-bottom: 14px;
+  background: #1A1A1A; border: 1.5px solid #2A2A2A; border-radius: 10px;
+  color: #E8E8E8; font-size: 14px; font-family: 'Courier New', monospace;
+  outline: none; transition: border-color .2s;
+}
+.cb-key-input::placeholder { color: #555; font-family: 'Sora', sans-serif; }
+.cb-key-input:focus { border-color: #FB923C; }
+.cb-key-actions { display: flex; gap: 8px; margin-bottom: 12px; }
+.cb-key-btn {
+  flex: 1; padding: 12px 14px; border: none; border-radius: 10px;
+  font-size: 13.5px; font-weight: 700; cursor: pointer;
+  font-family: 'Sora', sans-serif; transition: all .2s;
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+}
+.cb-key-save { background: linear-gradient(135deg, #FB923C 0%, #EA580C 100%); color: #fff; }
+.cb-key-save:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(251,146,60,0.4); }
+.cb-key-skip { background: #1A1A1A; color: #AAA; border: 1px solid #2A2A2A; }
+.cb-key-skip:hover { background: #252525; color: #E8E8E8; }
+.cb-key-foot { color: #666; font-size: 11px; text-align: center; margin: 0; }
 </style>
 </head>
 <body>
@@ -852,7 +1145,7 @@ footer p { font-size: 12.5px; color: #888888; }
           <div class="proj-meta">
             <span class="live-badge">LIVE</span>
             <div class="proj-links">
-              <a href="https://applyedgeai.in" target="_blank" class="plink" title="Live Demo">🔗</a>
+              <a href="https://applyedge.onrender.com" target="_blank" class="plink" title="Live Demo">🔗</a>
               <a href="https://github.com/siva-rama-krishna-reddy18?tab=repositories" target="_blank" class="plink" title="GitHub"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.373 0 12c0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.29-1.552 3.297-1.23 3.297-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.807 5.625-5.479 5.921.43.372.823 1.102.823 2.222 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.298 24 12c0-6.627-5.373-12-12-12z"/></svg></a>
             </div>
           </div>
@@ -1037,12 +1330,69 @@ footer p { font-size: 12.5px; color: #888888; }
     <h3>Download Resume</h3>
     <p>Get my latest resume with full work history, projects, and certifications.</p>
     <div class="modal-btns">
-      <a href="S R Krishna Reddy.pdf" download class="mbtn-solid">
+      <a href="SRKrishnaReddy_Resume.pdf" download class="mbtn-solid">
         <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         Download PDF
       </a>
       <button class="mbtn-ghost" onclick="closeModal()">Cancel</button>
     </div>
+  </div>
+</div>
+
+<!-- AI CHATBOT -->
+<button class="cb-launcher" id="cbLauncher" onclick="toggleChatbot()" aria-label="Open AI Assistant">
+  <span class="cb-pulse"></span>
+  <svg class="cb-icon-chat" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg>
+  <svg class="cb-icon-close" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+  <span class="cb-badge" id="cbBadge">1</span>
+  <span class="cb-tooltip">Chat with my AI assistant </span>
+</button>
+
+<div class="cb-window" id="cbWindow" role="dialog" aria-label="AI Assistant">
+  <div class="cb-header">
+    <div class="cb-avatar">🤖</div>
+    <div class="cb-header-info">
+      <div class="cb-header-name">Siva's AI Assistant</div>
+      <div class="cb-header-status">Online </div>
+    </div>
+    <button class="cb-header-btn" onclick="clearChat()" title="Clear chat" aria-label="Clear chat">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-2 14H7L5 6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+    </button>
+  </div>
+  <div class="cb-messages" id="cbMessages"></div>
+  <div class="cb-quick-replies" id="cbQuickReplies">
+    <button class="cb-quick-reply" onclick="sendQuick('Tell me about yourself')"><span class="cb-quick-reply-icon">👤</span> About Siva</button>
+    <button class="cb-quick-reply" onclick="sendQuick('What are your top skills?')"><span class="cb-quick-reply-icon">🛠️</span> Skills</button>
+    <button class="cb-quick-reply" onclick="sendQuick('Show me your projects')"><span class="cb-quick-reply-icon">🚀</span> Projects</button>
+    <button class="cb-quick-reply" onclick="sendQuick('What is your work experience?')"><span class="cb-quick-reply-icon">💼</span> Experience</button>
+    <button class="cb-quick-reply" onclick="sendQuick('How can I contact you?')"><span class="cb-quick-reply-icon">📧</span> Contact</button>
+  </div>
+  <form class="cb-input-wrap" id="cbForm" onsubmit="return sendCbMessage(event)">
+    <input type="text" class="cb-input" id="cbInput" placeholder="Ask me anything about Siva..." autocomplete="off" maxlength="300"/>
+    <button type="submit" class="cb-send" aria-label="Send">
+      <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+    </button>
+  </form>
+</div>
+
+<!-- API KEY MODAL -->
+<div class="cb-key-modal" id="cbKeyModal">
+  <div class="cb-key-box">
+    <button class="cb-key-close" onclick="closeKeyModal()" aria-label="Close">×</button>
+    <div class="cb-key-icon">🔑</div>
+    <h3>Enable Real AI (LLM)</h3>
+    <p>For truly intelligent, conversational responses powered by <strong>Groq LLaMA 3.3 70B</strong> (free tier). Your key is stored locally in your browser only — never sent anywhere except the Groq API.</p>
+    <ol class="cb-key-steps">
+      <li>Go to <a href="https://console.groq.com/keys" target="_blank" rel="noopener">console.groq.com/keys</a></li>
+      <li>Sign up free (no credit card) and click <strong>Create API Key</strong></li>
+      <li>Copy the key (starts with <code>gsk_</code>) and paste below</li>
+    </ol>
+    <input type="password" id="cbKeyInput" class="cb-key-input" placeholder="gsk_xxxxxxxxxxxxxxxxxxxxxxxx"/>
+    <div class="cb-key-actions">
+      <button class="cb-key-btn cb-key-save" onclick="saveApiKey()">🔓 Enable LLM Mode</button>
+      <button class="cb-key-btn cb-key-skip" onclick="closeKeyModal()">Skip — use built-in bot</button>
+    </div>
+    <p class="cb-key-foot">✅ Free tier: 14,400 requests/day &nbsp;•&nbsp; 🔒 Stored only in your browser localStorage</p>
   </div>
 </div>
 
@@ -1306,6 +1656,424 @@ window.addEventListener('scroll', () => {
   topBtn.style.opacity   = show ? '1' : '0';
   topBtn.style.transform = show ? 'scale(1)' : 'scale(0.7)';
 }, { passive: true });
+
+// ═══════════════════════════════════════════════════════════
+// AI CHATBOT — Intelligent Portfolio Assistant
+// ═══════════════════════════════════════════════════════════
+
+const CB = {
+  isOpen: false,
+  history: [],
+  storageKey: 'siva_chat_history_v1',
+  greeted: false,
+};
+
+// ── Knowledge base ───────────────────────────────────────────
+const KB = {
+  identity: {
+    name: 'Siva Rama Krishna Reddy Kunchala',
+    short: 'Siva',
+    role: 'Junior AI Engineer at Cogent IBS',
+    location: 'Fort Lauderdale, FL',
+    education: 'MS in Computer Science, Florida Atlantic University (2025)',
+    summary: "I'm a Hybrid Cloud & AI Engineer with 3+ years of experience at the intersection of infrastructure and intelligence. My work spans AWS architecture, Terraform automation, CI/CD pipelines, and connecting LLM/NLP systems into real production applications."
+  },
+  skills: {
+    cloud: ['AWS EC2', 'VPC', 'S3', 'IAM', 'ECS', 'RDS', 'Lambda', 'CloudWatch', 'Terraform', 'FSx ONTAP'],
+    ai: ['LangChain', 'LLaMA 3.3', 'Groq', 'RAG', 'FAISS', 'Vector Search', 'Ollama', 'HuggingFace'],
+    devops: ['Docker', 'GitHub Actions', 'CI/CD', 'Linux', 'Bash'],
+    dev: ['Python (92%)', 'React/TypeScript (82%)', 'FastAPI', 'Node.js', 'MongoDB', 'PostgreSQL', 'REST APIs']
+  },
+  experience: [
+    { role: 'Junior AI Engineer', company: 'Cogent IBS', period: 'Feb 2026 — Present', loc: 'Bingham Farms, MI',
+      bullets: [
+        'Built central AWS monitoring dashboard tracking 10 services across 9 regions',
+        'Implemented RBAC login system with Admin/Operator/Viewer roles',
+        'Set up GitHub Actions CI/CD with Docker — eliminated manual deploys',
+        'Wrote 6,000+ lines of clean backend API code (48 files) for multi-region AWS'
+      ]},
+    { role: 'AI Engineer Intern', company: 'Cogent IBS', period: 'Jun 2025 — Dec 2025', loc: 'Bingham Farms, MI',
+      bullets: [
+        'Built FoodyBuddy — AI food ordering chatbot using LangChain + Llama 3.2',
+        'Sub-500ms response with 384D vector embeddings for fuzzy intent detection',
+        'Complete ordering pipeline: discounts, tax, cart, email, real-time chat'
+      ]},
+    { role: 'Cloud Engineer', company: 'HCL Tech (Merck)', period: 'Jan 2022 — Aug 2023', loc: 'Chennai, India',
+      bullets: [
+        'Python automation eliminated 1-hour manual storage provisioning task across 50+ envs',
+        'Migrated 50+ enterprise apps from on-premise to AWS end-to-end',
+        'Managed Terraform IaC for all cloud resources — zero production breaks'
+      ]}
+  ],
+  projects: [
+    { name: 'ApplyEdge', icon: '⚡', live: 'https://applyedge.onrender.com',
+      desc: 'AI resume platform — instant scoring, ATS audit, job match, tailored cover letters, interview prep. Powered by Groq LLaMA 3.3 70B.',
+      stack: 'FastAPI · React · Groq LLaMA 3.3 · Adzuna API · Vercel · Render' },
+    { name: 'FoodyBuddy', icon: '🍜', live: null,
+      desc: 'Conversational AI food ordering — 384D vector embeddings understand fuzzy intent like "something spicy with rice" → Chicken Biryani. Sub-500ms response.',
+      stack: 'LangChain · Llama 3.2 · MongoDB · Node.js · Socket.io · React' },
+    { name: 'QueryVault', icon: '🔍', live: null,
+      desc: 'RAG document search — paste URL or upload PDF, ask anything, get answers with source citations. Built on FAISS + LangChain.',
+      stack: 'FAISS · Groq LLaMA 3 · HuggingFace · LangChain · FastAPI · React' },
+    { name: 'AI Audio Analyzer', icon: '🎙️', live: 'https://audio-analyzer-260842392440.us-central1.run.app',
+      desc: 'Serverless GCP app — speech-to-text, text-to-speech, sentiment detection. Fully event-driven with Cloud Functions + Cloud Storage.',
+      stack: 'GCP · Python · Cloud Functions · Cloud Storage · Google Cloud APIs' }
+  ],
+  certs: [
+    { name: 'AWS Cloud Practitioner', org: 'Amazon Web Services', year: '2024' },
+    { name: 'GitHub Foundations', org: 'GitHub', year: '2024' },
+    { name: 'Oracle AI Foundations', org: 'Oracle', year: '2024' },
+    { name: 'DevOps Foundations CI/CD', org: 'DevOps Institute', year: '2024' },
+    { name: 'Python Foundation', org: 'Python Institute', year: '2023' },
+    { name: 'AWS Cloud Tech Essentials', org: 'Amazon Web Services', year: '2023' }
+  ],
+  contact: {
+    email: 'srkreddykunchala@gmail.com',
+    phone: '+1 (660) 270-6448',
+    linkedin: 'https://www.linkedin.com/in/siva-rama-krishna-reddy-kunchala-9a35371b7/',
+    github: 'https://github.com/siva-rama-krishna-reddy18',
+    location: 'Fort Lauderdale, FL'
+  }
+};
+
+// ── Intent patterns (keyword + regex matching) ───────────────
+const INTENTS = [
+  { id: 'greeting', patterns: ['hi', 'hello', 'hey', 'hii', 'hiii', 'hola', 'greetings', 'good morning', 'good afternoon', 'good evening', 'yo', 'howdy'],
+    response: () => pickRandom([
+      "Hey there! 👋 I'm Siva's AI assistant. Ask me anything about his work, skills, or experience — or pick a quick reply below!",
+      "Hello! 👋 How can I help you learn about Siva today?",
+      "Hey! I'm here to answer questions about Siva's portfolio, projects, and skills. What would you like to know?"
+    ]) },
+
+  { id: 'how_are_you', patterns: ['how are you', 'how r u', "how's it going", 'how do you do', 'whats up', "what's up"],
+    response: () => "I'm just a bunch of JavaScript running in your browser, but I'm doing great! 🚀 More importantly — Siva is doing awesome, building cool AI products at Cogent IBS. What would you like to know about him?" },
+
+  { id: 'who_are_you', patterns: ['who are you', 'what are you', 'your name', 'who r u'],
+    response: () => "I'm an AI assistant embedded right here in Siva's portfolio website. 🤖 I can answer questions about his work, skills, projects, experience, and how to get in touch. Pretty meta, right? What would you like to know?" },
+
+  { id: 'about', patterns: ['about', 'tell me about', 'who is siva', 'about yourself', 'about you', 'about him', 'introduce', 'background', 'tell me about yourself', 'tell me about him', 'summary', 'bio', 'brief'],
+    response: () => `**About Siva** 👋\n\n${KB.identity.name}\n📍 ${KB.identity.location}\n💼 ${KB.identity.role}\n🎓 ${KB.identity.education}\n\n${KB.identity.summary}\n\nWant to dive deeper into his **skills**, **projects**, or **experience**?` },
+
+  { id: 'skills', patterns: ['skill', 'technology', 'technologies', 'tech stack', 'what can you do', 'what does he know', 'what he know', 'expertise', 'proficient', 'tools', 'languages'],
+    response: () => {
+      const top = KB.skills.cloud.concat(KB.skills.ai).concat(KB.skills.devops).concat(KB.skills.dev).slice(0, 14);
+      return `**Siva's Tech Stack** 🛠️\n\n**☁️ Cloud & Infra:** ${KB.skills.cloud.join(', ')}\n\n**🤖 AI / LLMs:** ${KB.skills.ai.join(', ')}\n\n**⚙️ DevOps:** ${KB.skills.devops.join(', ')}\n\n**💻 Development:** ${KB.skills.dev.slice(0, 5).join(', ')}\n\nHe specializes at the intersection of cloud infrastructure and AI/LLM applications. Want to see how he uses them in his **projects**?`;
+    } },
+
+  { id: 'aws', patterns: ['aws', 'amazon web services', 'ec2', 's3', 'lambda', 'cloudwatch', 'vpc'],
+    response: () => `**AWS Expertise** ☁️\n\nSiva is **95% proficient in AWS** — his strongest skill. He works daily with:\n• **Compute:** EC2, ECS, Lambda\n• **Storage:** S3, FSx ONTAP, RDS\n• **Networking:** VPC, IAM\n• **Monitoring:** CloudWatch (built a custom dashboard tracking 10 services across 9 regions!)\n• **IaC:** Terraform\n\nHe's **AWS Cloud Practitioner certified** (2024) and migrated 50+ enterprise apps to AWS at HCL Tech/Merck. 🚀` },
+
+  { id: 'ai', patterns: ['ai', 'llm', 'machine learning', 'ml', 'gpt', 'chatgpt', 'langchain', 'rag', 'vector', 'embedding', 'llama', 'artificial intelligence', 'genai', 'gen ai'],
+    response: () => `**AI & LLM Skills** 🤖\n\nSiva is a hands-on **AI Engineer** with production experience:\n\n**Core Stack:**\n• **LangChain** & RAG (Retrieval-Augmented Generation)\n• **LLaMA 3.3** via Groq (sub-second inference)\n• **Ollama** for local LLM serving\n• **FAISS** vector search & embeddings\n• **HuggingFace** for open-source models\n\n**Real projects built:**\n• ApplyEdge — AI resume scoring platform\n• FoodyBuddy — conversational food ordering\n• QueryVault — RAG document Q&A\n\nHe's **Oracle AI Foundations certified** (2024). Want details on a specific project?` },
+
+  { id: 'projects', patterns: ['project', 'portfolio', 'built', 'app', 'application', 'show me your work', 'show me your project', 'what have you built', 'what did you build', 'side project', 'github'],
+    response: () => `**Siva's Projects** 🚀\n\n${KB.projects.map(p => `**${p.icon} ${p.name}**\n${p.desc}\n*Stack:* ${p.stack}${p.live ? `\n🔗 [Live Demo](${p.live})` : ''}\n`).join('\n')}\n\nView all source code on his [GitHub](${KB.contact.github}). Which project interests you most?` },
+
+  { id: 'applyedge', patterns: ['applyedge', 'resume platform', 'resume tool', 'ats', 'job match'],
+    response: () => `**ApplyEdge — AI Resume Platform** ⚡\n\nUpload your resume and get instant AI analysis:\n• AI scoring & ATS compatibility audit\n• Job match analysis (uses Adzuna API)\n• Section-by-section tailoring\n• Cover letter generation\n• Interview prep questions\n\nPowered by **Groq LLaMA 3.3 70B** for fast inference. Built with FastAPI + React, deployed on Vercel + Render.\n\n🔗 [Try it live](https://applyedge.onrender.com)` },
+
+  { id: 'foodybuddy', patterns: ['foodybuddy', 'foody', 'food buddy', 'food ordering', 'chatbot ordering'],
+    response: () => `**FoodyBuddy — AI Food Ordering** 🍜\n\nA conversational AI system where customers order food by typing naturally in English. Built during Siva's AI Engineer internship at Cogent IBS.\n\n**Tech highlights:**\n• 384D vector embeddings for fuzzy intent detection\n• Sub-500ms response time in production\n• LangChain + Ollama Llama 3.2\n• MongoDB + Node.js + Socket.io for real-time chat\n• Complete ordering pipeline (cart, tax, discounts, email)\n\n**Cool feature:** When a user types *"something spicy with rice"*, the system correctly returns Chicken Biryani — no exact keyword match needed!` },
+
+  { id: 'experience', patterns: ['experience', 'work', 'job', 'career', 'where did he work', 'previous', 'employer', 'cogent', 'hcl', 'merck'],
+    response: () => `**Work Experience** 💼\n\n${KB.experience.map((e, i) => `**${i+1}. ${e.role}** — ${e.company}\n*${e.period} · ${e.loc}*\n${e.bullets.map(b => '• ' + b).join('\n')}\n`).join('\n')}\n\n3+ years total across enterprise cloud (Merck/HCL) and AI engineering (Cogent). Want details on any role?` },
+
+  { id: 'cogent', patterns: ['cogent ibs', 'cogent', 'current job', 'current role', 'present'],
+    response: () => `**Cogent IBS — Current Role** 💼\n\nSiva currently works at **Cogent Integrated Business Solutions** as a **Junior AI Engineer** (Feb 2026 — Present, in Bingham Farms, MI).\n\n**Key achievements:**\n• Built central AWS monitoring dashboard (10 services × 9 regions)\n• Implemented RBAC system (Admin / Operator / Viewer roles)\n• Set up GitHub Actions CI/CD with Docker — fully automated deploys\n• Wrote 6,000+ lines of backend code across 48 files\n\nPreviously interned at the same company (Jun–Dec 2025) where he built FoodyBuddy.` },
+
+  { id: 'hcl', patterns: ['hcl tech', 'hcl', 'merck'],
+    response: () => `**HCL Tech (Merck Account)** 🏢\n\nSiva worked as a **Cloud Engineer** at HCL Tech on the **Merck enterprise account** (Jan 2022 — Aug 2023, Chennai, India).\n\n**Highlights:**\n• Wrote a Python automation script that eliminated a 1-hour manual task for provisioning storage volumes — now runs across 50+ production environments\n• Migrated 50+ enterprise applications from on-premise to AWS\n• Managed Terraform IaC for all cloud resources\n• Acted as the main point of contact between business, infrastructure, and technical teams` },
+
+  { id: 'education', patterns: ['education', 'degree', 'university', 'college', 'fau', 'florida atlantic', 'masters', 'ms ', 'm.s.', 'study', 'studied', 'school'],
+    response: () => `**Education** 🎓\n\n**MS in Computer Science** — Florida Atlantic University (2025)\n• Applied research in conversational AI using LangChain and Llama\n• Vector search & NLP pipelines coursework\n\nHis undergrad is from India, where he also began his cloud career at HCL Tech.` },
+
+  { id: 'certs', patterns: ['certif', 'certification', 'credential', 'badge', 'aws cert', 'certified'],
+    response: () => `**Certifications** 🏅\n\n${KB.certs.map(c => `• **${c.name}** — ${c.org} (${c.year})`).join('\n')}\n\n6 verified credentials from AWS, GitHub, Oracle, Python Institute, and DevOps Institute.` },
+
+  { id: 'contact', patterns: ['contact', 'email', 'reach out', 'get in touch', 'how to reach', 'phone', 'call', 'hire', 'available', 'connect'],
+    response: () => `**Get in Touch with Siva** 📧\n\n📧 **Email:** [${KB.contact.email}](mailto:${KB.contact.email})\n📱 **Phone:** ${KB.contact.phone}\n💼 **LinkedIn:** [siva-rama-krishna-reddy-kunchala](${KB.contact.linkedin})\n💻 **GitHub:** [siva-rama-krishna-reddy18](${KB.contact.github})\n📍 **Location:** ${KB.contact.location}\n\nHe's **open to opportunities** in Cloud Engineering, MLOps, AI Engineering, or Platform Engineering. Remote and hybrid welcome!` },
+
+  { id: 'location', patterns: ['location', 'where', 'based', 'live in', 'city', 'country', 'fort lauderdale', 'florida', 'michigan', 'chennai', 'india'],
+    response: () => `**Location & Mobility** 📍\n\nSiva is currently based in **${KB.contact.location}** and works in **Bingham Farms, MI** for Cogent IBS.\n\nHe's **open to remote and hybrid roles** and has worked internationally — India (Chennai) and USA. He's flexible on relocation for the right opportunity.` },
+
+  { id: 'resume', patterns: ['resume', 'cv', 'curriculum', 'download resume'],
+    response: () => `**Download Siva's Resume** 📄\n\nYou can download his latest resume in PDF format — it includes full work history, projects, and certifications.\n\n👉 Click the **"Download CV"** button in the top navigation bar, or use the **↓ Resume** button in the hero section. It will open a confirmation dialog with the download link.` },
+
+  { id: 'python', patterns: ['python', 'fastapi', 'django', 'flask'],
+    response: () => `**Python & Backend** 🐍\n\nSiva is **92% proficient in Python** — his strongest language. He uses it for:\n• **AI/ML pipelines** — LangChain, LlamaIndex, HuggingFace\n• **Backend APIs** — FastAPI (primary), Flask\n• **Automation scripts** — like the storage provisioning script at HCL Tech\n• **Data processing** — vector embeddings, FAISS\n\nKey projects: ApplyEdge (FastAPI), QueryVault, the AWS monitoring dashboard (6,000+ LOC).` },
+
+  { id: 'react', patterns: ['react', 'frontend', 'typescript', 'next.js', 'nextjs'],
+    response: () => `**Frontend / React** ⚛️\n\nSiva works with **React + TypeScript** (82% proficiency) in his current role at Cogent IBS, building the AWS monitoring dashboard. He also uses it for:\n• FoodyBuddy's chat UI (React + Socket.io)\n• ApplyEdge (React frontend)\n• Various internal tools\n\nHe's comfortable with the modern React ecosystem — hooks, context, component design, and building responsive UIs.` },
+
+  { id: 'devops', patterns: ['devops', 'docker', 'kubernetes', 'ci/cd', 'pipeline', 'jenkins'],
+    response: () => `**DevOps & CI/CD** ⚙️\n\nSiva's DevOps stack:\n• **Docker** — containers for all his projects\n• **GitHub Actions** — CI/CD pipelines (built them at Cogent IBS)\n• **Terraform** — Infrastructure as Code (managed 50+ enterprise apps)\n• **Linux & Bash** — 90% proficiency\n• **Kubernetes** — 82% proficiency\n\nHe **fully automated deployments** at Cogent IBS — no manual steps required.` },
+
+  { id: 'terraform', patterns: ['terraform', 'iac', 'infrastructure as code'],
+    response: () => `**Terraform / IaC** 🏗️\n\nSiva uses **Terraform** to manage AWS infrastructure (88% proficiency). At HCL Tech/Merck, he managed IaC for all cloud resources, ensuring safe and consistent infrastructure changes across teams without breaking production. He treats infrastructure as code — versioned, reviewed, reproducible.` },
+
+  { id: 'opensource', patterns: ['open source', 'contribute', 'github contribution', 'oss'],
+    response: () => `**Open Source & GitHub** 💻\n\nYou can browse all of Siva's projects on his [GitHub profile](${KB.contact.github}). His repositories include the source code for ApplyEdge, FoodyBuddy, QueryVault, the AI Audio Analyzer, and various learning/POC projects. He actively maintains and improves them.` },
+
+  { id: 'thanks', patterns: ['thank', 'thanks', 'thank you', 'thx', 'ty', 'appreciate'],
+    response: () => pickRandom([
+      "You're very welcome! 😊 Let me know if there's anything else you'd like to know about Siva.",
+      "Anytime! Happy to help. Feel free to reach out via the contact section below!",
+      "Glad I could help! 🚀 Don't forget to check out the projects section — they're really cool."
+    ]) },
+
+  { id: 'bye', patterns: ['bye', 'goodbye', 'see you', 'cya', 'later', 'good night'],
+    response: () => pickRandom([
+      "Goodbye! 👋 Thanks for visiting Siva's portfolio. Don't forget to reach out if you'd like to connect!",
+      "See you later! 🚀 Hope to chat again soon.",
+      "Take care! 😊 Wishing you a great day."
+    ]) },
+
+  { id: 'help', patterns: ['help', 'what can you do', 'options', 'commands', 'menu'],
+    response: () => `**Here's what I can help with:** 🤖\n\nJust ask me naturally! Try questions like:\n\n• *"Tell me about Siva"*\n• *"What are his skills?"*\n• *"Show me his projects"*\n• *"What did he do at HCL Tech?"*\n• *"What AWS services does he use?"*\n• *"How can I contact him?"*\n• *"What are his certifications?"*\n• *"Tell me about ApplyEdge"*\n• *"Where is he based?"*\n\nYou can also click the quick reply buttons below for popular questions!` },
+
+  { id: 'fun', patterns: ['fun', 'joke', 'funny', 'laugh'],
+    response: () => `Why did the LLM go to therapy? 🤖\n\nIt had too many **unresolved tokens** and couldn't find its **attention**! \n\n*(Okay okay, I'm more useful for portfolio questions — try asking about Siva's projects! 😄)*` },
+
+  { id: 'strengths', patterns: ['strength', 'good at', 'strengths', 'best at'],
+    response: () => `**Siva's Top Strengths** 💪\n\n1. **Hybrid Cloud + AI** — rare combo of AWS expertise + production LLM skills\n2. **End-to-end ownership** — built entire features solo (UI + API + DB + deploy)\n3. **Speed of execution** — 6,000+ LOC in one project, FoodyBuddy in 6 months\n4. **Real production experience** — not just tutorials; his code runs in production\n5. **Communication** — strong docs, clear status updates, cross-team coordination at Merck\n\nHe's a **builder** who ships — that's what makes him stand out. 🚀` },
+
+  { id: 'weakness', patterns: ['weakness', 'weak', 'improve', 'areas to improve'],
+    response: () => `Siva doesn't list weaknesses publicly, but here's what he'd say: he's always learning and growing. He's transparent about that on his portfolio — check the **About** section for the full picture, or his [LinkedIn](${KB.contact.linkedin}) for a more personal take. 💪` },
+
+  { id: 'salary', patterns: ['salary', 'compensation', 'pay', 'rate', 'expected salary'],
+    response: () => `Salary expectations are best discussed directly — they depend on role, location, and full compensation package. 📊\n\nPlease reach out to Siva at [${KB.contact.email}](mailto:${KB.contact.email}) or connect on [LinkedIn](${KB.contact.linkedin}) to chat. He's open to opportunities and happy to discuss specifics.` },
+
+  { id: 'fallback', patterns: [],
+    response: (msg) => `Hmm, I'm not sure I caught that. 🤔 Could you rephrase, or try one of these topics:\n\n• **About Siva** — background and summary\n• **Skills** — tech stack and expertise\n• **Projects** — ApplyEdge, FoodyBuddy, QueryVault, Audio Analyzer\n• **Experience** — Cogent IBS, HCL Tech, education\n• **Contact** — how to reach out\n• **Certifications** — AWS, GitHub, Oracle, etc.\n\nYou can also click the quick reply buttons below!` }
+];
+
+// ── Intent matching engine ───────────────────────────────────
+function matchIntent(input) {
+  const msg = input.toLowerCase().trim();
+  if (!msg) return null;
+
+  // Score each intent by counting pattern matches
+  let best = null;
+  let bestScore = 0;
+
+  for (const intent of INTENTS) {
+    if (intent.id === 'fallback') continue;
+    let score = 0;
+    for (const pattern of intent.patterns) {
+      if (msg.includes(pattern.toLowerCase())) {
+        // Longer matches are weighted more
+        score += pattern.length;
+        // Exact match bonus
+        if (msg === pattern.toLowerCase()) score += 50;
+      }
+    }
+    if (score > bestScore) {
+      bestScore = score;
+      best = intent;
+    }
+  }
+
+  return best || INTENTS.find(i => i.id === 'fallback');
+}
+
+// ── Helper functions ─────────────────────────────────────────
+function pickRandom(arr) {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
+
+function escapeHtml(str) {
+  return str
+    .replace(/&/g, '&')
+    .replace(/</g, '<')
+    .replace(/>/g, '>')
+    .replace(/"/g, '"')
+    .replace(/'/g, '&#039;');
+}
+
+function formatMessage(text) {
+  // Convert markdown-style formatting to HTML
+  let html = escapeHtml(text);
+  // Bold **text**
+  html = html.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+  // Italic *text*
+  html = html.replace(/(?<!\*)\*([^*\n]+)\*(?!\*)/g, '<em>$1</em>');
+  // Links [text](url)
+  html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+  // Bullets • text
+  html = html.replace(/^• (.+)$/gm, '<li>$1</li>');
+  // Wrap consecutive <li> in <ul>
+  html = html.replace(/(<li>.*<\/li>\n?)+/g, (m) => '<ul>' + m + '</ul>');
+  // Line breaks
+  html = html.replace(/\n/g, '<br>');
+  return html;
+}
+
+function getResponse(input) {
+  const intent = matchIntent(input);
+  if (!intent) return INTENTS.find(i => i.id === 'fallback').response(input);
+  return intent.response(input);
+}
+
+// ── UI rendering ─────────────────────────────────────────────
+function scrollToBottom() {
+  const msgs = document.getElementById('cbMessages');
+  if (msgs) msgs.scrollTop = msgs.scrollHeight;
+}
+
+function appendMessage(role, text) {
+  const msgs = document.getElementById('cbMessages');
+  if (!msgs) return;
+
+  const wrap = document.createElement('div');
+  wrap.className = 'cb-msg ' + role;
+
+  const avatar = document.createElement('div');
+  avatar.className = 'cb-msg-avatar';
+  avatar.textContent = role === 'user' ? '👤' : '🤖';
+
+  const bubble = document.createElement('div');
+  bubble.className = 'cb-msg-bubble';
+  bubble.innerHTML = formatMessage(text);
+
+  wrap.appendChild(avatar);
+  wrap.appendChild(bubble);
+  msgs.appendChild(wrap);
+  scrollToBottom();
+  return wrap;
+}
+
+function showTyping() {
+  const msgs = document.getElementById('cbMessages');
+  if (!msgs) return null;
+
+  const wrap = document.createElement('div');
+  wrap.className = 'cb-msg bot';
+  wrap.id = 'cbTyping';
+
+  const avatar = document.createElement('div');
+  avatar.className = 'cb-msg-avatar';
+  avatar.textContent = '🤖';
+
+  const bubble = document.createElement('div');
+  bubble.className = 'cb-msg-bubble';
+  bubble.innerHTML = '<div class="cb-typing"><span></span><span></span><span></span></div>';
+
+  wrap.appendChild(avatar);
+  wrap.appendChild(bubble);
+  msgs.appendChild(wrap);
+  scrollToBottom();
+  return wrap;
+}
+
+function removeTyping(el) {
+  if (el && el.parentNode) el.parentNode.removeChild(el);
+}
+
+function botSay(text, delay = 600) {
+  const typing = showTyping();
+  setTimeout(() => {
+    removeTyping(typing);
+    appendMessage('bot', text);
+  }, delay);
+}
+
+// ── Chat logic ───────────────────────────────────────────────
+function processUserMessage(text) {
+  if (!text || !text.trim()) return;
+  appendMessage('user', text);
+  CB.history.push({ role: 'user', text, ts: Date.now() });
+  saveHistory();
+
+  // Slight thinking pause
+  const response = getResponse(text);
+  const thinkTime = Math.min(1800, 500 + text.length * 18);
+  botSay(response, thinkTime);
+
+  CB.history.push({ role: 'bot', text: response, ts: Date.now() });
+  saveHistory();
+}
+
+function sendCbMessage(e) {
+  if (e) e.preventDefault();
+  const input = document.getElementById('cbInput');
+  if (!input) return false;
+  const text = input.value.trim();
+  if (!text) return false;
+  input.value = '';
+  processUserMessage(text);
+  return false;
+}
+
+function sendQuick(text) {
+  processUserMessage(text);
+}
+
+function clearChat() {
+  if (!confirm('Clear chat history?')) return;
+  const msgs = document.getElementById('cbMessages');
+  if (msgs) msgs.innerHTML = '';
+  CB.history = [];
+  CB.greeted = false;
+  localStorage.removeItem(CB.storageKey);
+  setTimeout(() => greet(), 200);
+}
+
+// ── Welcome / Greeting ───────────────────────────────────────
+function greet() {
+  if (CB.greeted) return;
+  CB.greeted = true;
+  botSay("Hi there! 👋 I'm Siva's AI assistant. I can answer questions about his skills, projects, experience, and how to get in touch. What would you like to know?", 400);
+}
+
+// ── Toggle chatbot window ────────────────────────────────────
+function toggleChatbot() {
+  const win = document.getElementById('cbWindow');
+  const launcher = document.getElementById('cbLauncher');
+  if (!win || !launcher) return;
+  CB.isOpen = !CB.isOpen;
+  win.classList.toggle('open', CB.isOpen);
+  launcher.classList.toggle('open', CB.isOpen);
+  if (CB.isOpen) {
+    document.getElementById('cbBadge').style.display = 'none';
+    if (!CB.greeted) greet();
+    setTimeout(() => document.getElementById('cbInput')?.focus(), 350);
+  }
+}
+
+// Close on Escape
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && CB.isOpen) toggleChatbot();
+});
+
+// ── Persistence ──────────────────────────────────────────────
+function saveHistory() {
+  try {
+    localStorage.setItem(CB.storageKey, JSON.stringify(CB.history.slice(-30)));
+  } catch (e) {}
+}
+
+function loadHistory() {
+  try {
+    const raw = localStorage.getItem(CB.storageKey);
+    if (!raw) return [];
+    return JSON.parse(raw) || [];
+  } catch (e) { return []; }
+}
+
+function restoreHistory() {
+  CB.history = loadHistory();
+  if (CB.history.length === 0) return;
+  CB.greeted = true;
+  CB.history.forEach(m => appendMessage(m.role, m.text));
+}
+
+// ── Init ─────────────────────────────────────────────────────
+setTimeout(() => {
+  restoreHistory();
+  if (CB.history.length === 0) {
+    // Don't auto-greet; wait for user to open
+  }
+}, 100);
 </script>
 </body>
 </html>
