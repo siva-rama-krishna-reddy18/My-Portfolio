@@ -16,10 +16,10 @@ html { scroll-behavior: smooth; overflow-x: hidden; -webkit-overflow-scrolling: 
   --white:    #1A1A1A;
   --black:    #FB923C;
   --black2:   #EA580C;
-  --gray1:    #E0E0E0;
-  --gray2:    #AAAAAA;
-  --gray3:    #888888;
-  --gray4:    #AAAAAA;
+  --gray1:    #FFFFFF;
+  --gray2:    #FFFFFF;
+  --gray3:    #BBBBBB;
+  --gray4:    #FFFFFF;
   --border:   #2A2A2A;
   --shadow-sm: 0 1px 4px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.06);
   --shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 16px 40px rgba(0,0,0,0.08);
@@ -144,7 +144,7 @@ nav {
 @keyframes typing { from{width:0} to{width:100%} }
 .hero-desc {
   font-size: 15px; font-weight: 400;
-  color: #AAAAAA;
+  color: #FFFFFF;
   line-height: 1.8; max-width: 500px; margin-bottom: 36px;
 }
 .hero-btns { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 52px; }
@@ -171,7 +171,7 @@ nav {
 .btn-ghost-w:hover { border-color: #FB923C; color: #FB923C; }
 .hero-divider { width: 100%; height: 1px; background: #2A2A2A; margin-bottom: 28px; }
 .hero-meta { display: flex; gap: 32px; flex-wrap: wrap; }
-.hm { font-size: 12.5px; color: #888888; font-weight: 400; display: flex; align-items: center; gap: 7px; }
+.hm { font-size: 12.5px; color: #FFFFFF; font-weight: 400; display: flex; align-items: center; gap: 7px; }
 
 .hero-card {
   background: #1A1A1A;
@@ -235,7 +235,7 @@ section { padding: 96px 56px; }
   gap: 64px; margin-top: 56px; align-items: start;
 }
 .about-text p {
-  font-size: 14.5px; color: #CCCCCC; line-height: 1.85;
+  font-size: 14.5px; color: #FFFFFF; line-height: 1.85;
   margin-bottom: 14px; font-weight: 400;
 }
 .about-text p strong { color: var(--black); font-weight: 700; }
@@ -401,7 +401,7 @@ section { padding: 96px 56px; }
 .contact-left .sec-eyebrow { color: #888888; }
 .contact-left .sec-eyebrow::before { background: #888888; }
 .contact-left .sec-title { color: #E8E8E8; }
-.contact-left .sec-sub { color: #AAAAAA; max-width: 420px; margin-bottom: 36px; }
+.contact-left .sec-sub { color: #FFFFFF; max-width: 420px; margin-bottom: 36px; }
 .c-links { display: flex; flex-direction: column; border: 1px solid #2A2A2A; border-radius: 14px; overflow: hidden; background: #141414; }
 .clink {
   display: flex; align-items: center; gap: 14px;
@@ -416,7 +416,7 @@ section { padding: 96px 56px; }
   font-size: 16px; flex-shrink: 0;
 }
 .clink-lbl { font-size: 10px; color: #AAAAAA; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600; }
-.clink-val { font-size: 13px; font-weight: 500; color: #CCCCCC; margin-top: 1px; }
+.clink-val { font-size: 13px; font-weight: 500; color: #FFFFFF; margin-top: 1px; }
 .contact-form {
   background: #fff;
   border: 1px solid #2A2A2A;
@@ -613,6 +613,7 @@ footer p { font-size: 12.5px; color: #888888; }
 .cb-launcher .cb-icon-close { display: none; }
 .cb-launcher.open .cb-icon-chat { display: none; }
 .cb-launcher.open .cb-icon-close { display: block; }
+.cb-launcher.open { opacity: 0; pointer-events: none; transition: opacity .2s; }
 .cb-pulse {
   position: absolute; inset: 0; border-radius: 50%;
   border: 2px solid #FB923C; opacity: 0;
@@ -647,9 +648,9 @@ footer p { font-size: 12.5px; color: #888888; }
 .cb-launcher.open .cb-tooltip { display: none; }
 
 .cb-window {
-  position: fixed; bottom: 164px; right: 28px; z-index: 599;
+  position: fixed; bottom: 100px; right: 28px; z-index: 599;
   width: 380px; max-width: calc(100vw - 32px);
-  height: 560px; max-height: calc(100vh - 200px);
+  height: 600px; max-height: calc(100vh - 160px);
   background: #141414; border: 1px solid #2A2A2A;
   border-radius: 18px; overflow: hidden; display: none;
   flex-direction: column; box-shadow: 0 20px 60px rgba(0,0,0,0.6), 0 4px 12px rgba(0,0,0,0.4);
@@ -727,7 +728,7 @@ footer p { font-size: 12.5px; color: #888888; }
   word-wrap: break-word; white-space: pre-wrap;
 }
 .cb-msg.bot .cb-msg-bubble {
-  background: #1A1A1A; color: #E0E0E0;
+  background: #1A1A1A; color: #F5F5F5;
   border-bottom-left-radius: 4px;
   border: 1px solid #252525;
 }
@@ -846,9 +847,23 @@ footer p { font-size: 12.5px; color: #888888; }
   .hero-meta { gap: 16px; }
   .contact-inner { padding: 0; }
   .cb-launcher { bottom: 84px; right: 18px; width: 54px; height: 54px; }
-  .cb-window { bottom: 152px; right: 18px; left: 18px; width: auto; max-width: none; height: 70vh; max-height: 540px; }
+  .cb-window { bottom: 100px; right: 18px; left: 18px; width: auto; max-width: none; height: 70vh; max-height: calc(100vh - 130px); }
   .cb-tooltip { display: none; }
   .ai-canvas { display: none; }
+}
+
+/* ─── CHAT MOBILE FULLSCREEN (≤480px) ───── */
+@media (max-width: 480px) {
+  .cb-window {
+    bottom: 0; left: 0; right: 0;
+    width: 100%; max-width: 100%;
+    height: calc(var(--vh, 1vh) * 90);
+    max-height: none;
+    border-radius: 18px 18px 0 0;
+  }
+  .cb-launcher { bottom: 16px; right: 16px; width: 52px; height: 52px; }
+  .cb-quick-replies { overflow-x: auto; flex-wrap: nowrap; -webkit-overflow-scrolling: touch; }
+  .cb-quick-reply { flex-shrink: 0; }
   .hero-photo-wrap { margin-top: 0; }
 }
 
@@ -1358,6 +1373,9 @@ footer p { font-size: 12.5px; color: #888888; }
     <button class="cb-header-btn" onclick="clearChat()" title="Clear chat" aria-label="Clear chat">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-2 14H7L5 6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
     </button>
+    <button class="cb-header-btn cb-close-btn" onclick="toggleChatbot()" title="Close chat" aria-label="Close chat" style="display:flex">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
   </div>
   <div class="cb-messages" id="cbMessages"></div>
   <div class="cb-quick-replies" id="cbQuickReplies">
@@ -1365,6 +1383,9 @@ footer p { font-size: 12.5px; color: #888888; }
     <button class="cb-quick-reply" onclick="sendQuick('What are your top skills?')"><span class="cb-quick-reply-icon">🛠️</span> Skills</button>
     <button class="cb-quick-reply" onclick="sendQuick('Show me your projects')"><span class="cb-quick-reply-icon">🚀</span> Projects</button>
     <button class="cb-quick-reply" onclick="sendQuick('What is your work experience?')"><span class="cb-quick-reply-icon">💼</span> Experience</button>
+    <button class="cb-quick-reply" onclick="sendQuick('Why should we hire Siva?')"><span class="cb-quick-reply-icon">⭐</span> Why Hire?</button>
+    <button class="cb-quick-reply" onclick="sendQuick('I want to hire Siva')"><span class="cb-quick-reply-icon">🤝</span> Hire Me</button>
+    <button class="cb-quick-reply" onclick="openModal()"><span class="cb-quick-reply-icon">📄</span> Resume</button>
     <button class="cb-quick-reply" onclick="sendQuick('How can I contact you?')"><span class="cb-quick-reply-icon">📧</span> Contact</button>
   </div>
   <form class="cb-input-wrap" id="cbForm" onsubmit="return sendCbMessage(event)">
@@ -1666,6 +1687,7 @@ const CB = {
   history: [],
   storageKey: 'siva_chat_history_v1',
   greeted: false,
+  lastIntentId: null,
 };
 
 // ── Knowledge base ───────────────────────────────────────────
@@ -1769,10 +1791,10 @@ const INTENTS = [
   { id: 'projects', patterns: ['project', 'portfolio', 'built', 'app', 'application', 'show me your work', 'show me your project', 'what have you built', 'what did you build', 'side project', 'github'],
     response: () => `**Siva's Projects** 🚀\n\n${KB.projects.map(p => `**${p.icon} ${p.name}**\n${p.desc}\n*Stack:* ${p.stack}${p.live ? `\n🔗 [Live Demo](${p.live})` : ''}\n`).join('\n')}\n\nView all source code on his [GitHub](${KB.contact.github}). Which project interests you most?` },
 
-  { id: 'applyedge', patterns: ['applyedge', 'resume platform', 'resume tool', 'ats', 'job match'],
+  { id: 'applyedge', patterns: ['applyedge', 'apply edge', 'resume platform', 'resume tool', 'ats', 'job match', 'tell me about applyedge', 'about applyedge', 'applyedge project'],
     response: () => `**ApplyEdge — AI Resume Platform** ⚡\n\nUpload your resume and get instant AI analysis:\n• AI scoring & ATS compatibility audit\n• Job match analysis (uses Adzuna API)\n• Section-by-section tailoring\n• Cover letter generation\n• Interview prep questions\n\nPowered by **Groq LLaMA 3.3 70B** for fast inference. Built with FastAPI + React, deployed on Vercel + Render.\n\n🔗 [Try it live](https://applyedge.onrender.com)` },
 
-  { id: 'foodybuddy', patterns: ['foodybuddy', 'foody', 'food buddy', 'food ordering', 'chatbot ordering'],
+  { id: 'foodybuddy', patterns: ['foodybuddy', 'foody', 'food buddy', 'food ordering', 'chatbot ordering', 'tell me about foodybuddy', 'about foodybuddy', 'foodybuddy project'],
     response: () => `**FoodyBuddy — AI Food Ordering** 🍜\n\nA conversational AI system where customers order food by typing naturally in English. Built during Siva's AI Engineer internship at Cogent IBS.\n\n**Tech highlights:**\n• 384D vector embeddings for fuzzy intent detection\n• Sub-500ms response time in production\n• LangChain + Ollama Llama 3.2\n• MongoDB + Node.js + Socket.io for real-time chat\n• Complete ordering pipeline (cart, tax, discounts, email)\n\n**Cool feature:** When a user types *"something spicy with rice"*, the system correctly returns Chicken Biryani — no exact keyword match needed!` },
 
   { id: 'experience', patterns: ['experience', 'work', 'job', 'career', 'where did he work', 'previous', 'employer', 'cogent', 'hcl', 'merck'],
@@ -1790,14 +1812,17 @@ const INTENTS = [
   { id: 'certs', patterns: ['certif', 'certification', 'credential', 'badge', 'aws cert', 'certified'],
     response: () => `**Certifications** 🏅\n\n${KB.certs.map(c => `• **${c.name}** — ${c.org} (${c.year})`).join('\n')}\n\n6 verified credentials from AWS, GitHub, Oracle, Python Institute, and DevOps Institute.` },
 
-  { id: 'contact', patterns: ['contact', 'email', 'reach out', 'get in touch', 'how to reach', 'phone', 'call', 'hire', 'available', 'connect'],
-    response: () => `**Get in Touch with Siva** 📧\n\n📧 **Email:** [${KB.contact.email}](mailto:${KB.contact.email})\n📱 **Phone:** ${KB.contact.phone}\n💼 **LinkedIn:** [siva-rama-krishna-reddy-kunchala](${KB.contact.linkedin})\n💻 **GitHub:** [siva-rama-krishna-reddy18](${KB.contact.github})\n📍 **Location:** ${KB.contact.location}\n\nHe's **open to opportunities** in Cloud Engineering, MLOps, AI Engineering, or Platform Engineering. Remote and hybrid welcome!` },
+  { id: 'contact', patterns: ['contact', 'email', 'reach out', 'get in touch', 'how to reach', 'phone', 'available', 'connect'],
+    response: () => `**Get in Touch with Siva** 📧\n\n📧 **Email:** [${KB.contact.email}](mailto:${KB.contact.email})\n📱 **Phone:** ${KB.contact.phone}\n💼 **LinkedIn:** [siva-rama-krishna-reddy-kunchala](${KB.contact.linkedin})\n💻 **GitHub:** [siva-rama-krishna-reddy18](${KB.contact.github})\n📍 **Location:** ${KB.contact.location}\n📅 **Schedule a Call:** [Book 30 min](https://calendar.app.google/Uyi1f2gMhwVBcuby6)\n\nHe's **open to opportunities** in Cloud Engineering, MLOps, AI Engineering, or Platform Engineering. Remote and hybrid welcome!` },
 
   { id: 'location', patterns: ['location', 'where', 'based', 'live in', 'city', 'country', 'fort lauderdale', 'florida', 'michigan', 'chennai', 'india'],
     response: () => `**Location & Mobility** 📍\n\nSiva is currently based in **${KB.contact.location}** and works in **Bingham Farms, MI** for Cogent IBS.\n\nHe's **open to remote and hybrid roles** and has worked internationally — India (Chennai) and USA. He's flexible on relocation for the right opportunity.` },
 
-  { id: 'resume', patterns: ['resume', 'cv', 'curriculum', 'download resume'],
-    response: () => `**Download Siva's Resume** 📄\n\nYou can download his latest resume in PDF format — it includes full work history, projects, and certifications.\n\n👉 Click the **"Download CV"** button in the top navigation bar, or use the **↓ Resume** button in the hero section. It will open a confirmation dialog with the download link.` },
+  { id: 'resume', patterns: ['resume', 'cv', 'curriculum', 'download resume', 'download cv', 'get resume', 'get cv'],
+    response: () => {
+      setTimeout(() => openModal(), 800);
+      return `**Resume Download** 📄\n\nOpening the download dialog for you now! 👆\n\nThe PDF includes full work history, all 4 projects, 6 certifications, and contact details. You can also click **"Download CV"** in the top nav anytime.`;
+    } },
 
   { id: 'python', patterns: ['python', 'fastapi', 'django', 'flask'],
     response: () => `**Python & Backend** 🐍\n\nSiva is **92% proficient in Python** — his strongest language. He uses it for:\n• **AI/ML pipelines** — LangChain, LlamaIndex, HuggingFace\n• **Backend APIs** — FastAPI (primary), Flask\n• **Automation scripts** — like the storage provisioning script at HCL Tech\n• **Data processing** — vector embeddings, FAISS\n\nKey projects: ApplyEdge (FastAPI), QueryVault, the AWS monitoring dashboard (6,000+ LOC).` },
@@ -1843,8 +1868,37 @@ const INTENTS = [
   { id: 'salary', patterns: ['salary', 'compensation', 'pay', 'rate', 'expected salary'],
     response: () => `Salary expectations are best discussed directly — they depend on role, location, and full compensation package. 📊\n\nPlease reach out to Siva at [${KB.contact.email}](mailto:${KB.contact.email}) or connect on [LinkedIn](${KB.contact.linkedin}) to chat. He's open to opportunities and happy to discuss specifics.` },
 
+  { id: 'queryvault', patterns: ['queryvault', 'query vault', 'rag search', 'document search', 'pdf search', 'url search', 'faiss project', 'tell me about queryvault', 'about queryvault', 'queryvault project'],
+    response: () => `**QueryVault — RAG Document Search** 🔍\n\nPaste any URL or upload a PDF and ask any question — the AI reads the document and returns answers with exact source citations.\n\n**How it works:**\n• You paste a URL or upload a PDF\n• The content is chunked and vectorized into a FAISS index\n• You ask natural language questions\n• LangChain retrieval chains surface the most relevant chunks\n• LLaMA 3 generates grounded answers with source citations\n\n**Stack:** FAISS · Groq LLaMA 3 · HuggingFace embeddings · LangChain · FastAPI · React\n\nA clean showcase of Siva's RAG architecture skills.` },
+
+  { id: 'ai_audio', patterns: ['audio analyzer', 'ai audio', 'speech to text', 'text to speech', 'sentiment detection', 'gcp project', 'cloud functions project', 'tell me about audio analyzer', 'about audio analyzer', 'audio project'],
+    response: () => `**AI Audio Analyzer — GCP** 🎙️\n\nA fully serverless GCP application that processes audio in three ways:\n• **Speech-to-Text** — converts audio recordings to text\n• **Text-to-Speech** — generates audio from any text input\n• **Sentiment Analysis** — detects emotion/tone in real time\n\n**Architecture:** Fully event-driven — Google Cloud Functions triggered by Cloud Storage uploads.\n\n**Stack:** GCP · Python · Cloud Functions · Cloud Storage · Google Cloud Speech/TTS/NLP APIs\n\n🔗 [Try it live](https://audio-analyzer-260842392440.us-central1.run.app)` },
+
+  { id: 'why_hire', patterns: ['why hire', 'why should we hire', 'why hire you', 'what makes you different', 'what makes you stand out', 'unique', 'best candidate', 'value proposition', 'make you special', 'set you apart', 'why siva', 'why choose siva'],
+    response: () => `**Why Hire Siva?** 🚀\n\n**1. Rare Cloud + AI Combo**\nMost engineers do one or the other. Siva does both — AWS infrastructure *and* production LLM applications. That's a genuinely scarce skill set in 2025.\n\n**2. Ships Real Products**\nNot just tutorials. [ApplyEdge](https://applyedge.onrender.com) is live. FoodyBuddy ran in production at Cogent IBS. All 4 projects are deployed end-to-end.\n\n**3. Enterprise-Grade Experience**\nMigrated 50+ enterprise applications at Merck/HCL Tech. Built a 6,000+ LOC multi-region AWS dashboard at Cogent. Not a hobbyist — a professional engineer.\n\n**4. Immediately Productive**\nPython 92% · AWS 95% · 3+ years of production scars. He knows the stack deeply.\n\n**5. Strong Communicator**\nMS CS (FAU 2025). Coordinated across business, infra, and technical teams at HCL/Merck.\n\n→ Ready to talk? [srkreddykunchala@gmail.com](mailto:srkreddykunchala@gmail.com) or [LinkedIn](https://www.linkedin.com/in/siva-rama-krishna-reddy-kunchala-9a35371b7/)` },
+
+  { id: 'job_prefs', patterns: ['looking for', 'what roles', 'job preferences', 'open to remote', 'remote work', 'willing to relocate', 'relocation', 'target role', 'interested in what', 'what position', 'what kind of job', 'open to work', 'job search', 'actively looking'],
+    response: () => `**Siva's Job Preferences** 🎯\n\n**Target Roles:**\n• Cloud Engineer / Platform Engineer\n• MLOps Engineer\n• AI Engineer / LLM Engineer\n• Backend Engineer (Python + AWS)\n\n**Location:**\n📍 Currently in **Fort Lauderdale, FL**\n✅ Open to **remote** roles\n✅ Open to **hybrid**\n✅ Open to relocation for the right opportunity\n\n**Work Authorization:** Authorized to work in the US\n**Status:** Actively looking\n\nReach out: [srkreddykunchala@gmail.com](mailto:srkreddykunchala@gmail.com) or [Book a time](https://calendar.app.google/Uyi1f2gMhwVBcuby6)` },
+
+  { id: 'hire_me', patterns: ['i want to hire', 'want to hire', 'hire siva', 'schedule interview', 'schedule a call', 'book a meeting', 'book a call', 'book interview', 'interview siva', 'interview you', 'job opportunity', 'job offer', 'recruiting', 'recruiter', 'looking to hire'],
+    response: () => {
+      trackEvent('chatbot', 'hire_intent', 'recruiter_flow');
+      return `**Glad you're interested in Siva! 🎉**\n\nHere's how to connect:\n\n**📧 Email** — fastest response:\n[srkreddykunchala@gmail.com](mailto:srkreddykunchala@gmail.com)\n\n**💼 LinkedIn** — for formal outreach:\n[siva-rama-krishna-reddy-kunchala](https://www.linkedin.com/in/siva-rama-krishna-reddy-kunchala-9a35371b7/)\n\n**📅 Schedule a Call** — book directly:\n[Book a time](https://calendar.app.google/Uyi1f2gMhwVBcuby6)\n\nHe's targeting **Cloud Engineering, MLOps, and AI Engineering** roles. Remote and hybrid welcome!\n\nType **"download resume"** and I'll pull up the PDF right now.`;
+    } },
+
+  { id: 'more', patterns: ['tell me more', 'more details', 'more information', 'more info', 'expand on that', 'elaborate', 'go on', 'continue', 'tell me more about that'],
+    response: () => {
+      const last = CB.lastIntentId;
+      if (!last || last === 'greeting' || last === 'how_are_you' || last === 'who_are_you' || last === 'fallback') {
+        return `What would you like to know more about?\n\n• **Projects** — ApplyEdge, FoodyBuddy, QueryVault, Audio Analyzer\n• **Experience** — Cogent IBS, HCL Tech, education\n• **Skills** — Cloud, AI, DevOps, Dev\n• **Why hire Siva** — value proposition\n• **Contact** — how to reach out`;
+      }
+      const intent = INTENTS.find(i => i.id === last);
+      if (!intent) return `What would you like more details on? Try asking about a specific **project**, **role**, or **skill**.`;
+      return intent.response('tell me more');
+    } },
+
   { id: 'fallback', patterns: [],
-    response: (msg) => `Hmm, I'm not sure I caught that. 🤔 Could you rephrase, or try one of these topics:\n\n• **About Siva** — background and summary\n• **Skills** — tech stack and expertise\n• **Projects** — ApplyEdge, FoodyBuddy, QueryVault, Audio Analyzer\n• **Experience** — Cogent IBS, HCL Tech, education\n• **Contact** — how to reach out\n• **Certifications** — AWS, GitHub, Oracle, etc.\n\nYou can also click the quick reply buttons below!` }
+    response: (msg) => `Hmm, I'm not sure I caught that. 🤔 Could you rephrase, or try one of these topics:\n\n• **About Siva** — background and summary\n• **Skills** — tech stack and expertise\n• **Projects** — ApplyEdge, FoodyBuddy, QueryVault, Audio Analyzer\n• **Experience** — Cogent IBS, HCL Tech, education\n• **Contact / Hire** — how to reach out or schedule a call\n• **Why hire Siva** — value proposition\n• **Certifications** — AWS, GitHub, Oracle, etc.\n\nYou can also click the quick reply buttons below!` }
 ];
 
 // ── Intent matching engine ───────────────────────────────────
@@ -1911,6 +1965,7 @@ function formatMessage(text) {
 function getResponse(input) {
   const intent = matchIntent(input);
   if (!intent) return INTENTS.find(i => i.id === 'fallback').response(input);
+  if (intent.id !== 'more') CB.lastIntentId = intent.id;
   return intent.response(input);
 }
 
@@ -1984,10 +2039,11 @@ function processUserMessage(text) {
   CB.history.push({ role: 'user', text, ts: Date.now() });
   saveHistory();
 
-  // Slight thinking pause
   const response = getResponse(text);
   const thinkTime = Math.min(1800, 500 + text.length * 18);
   botSay(response, thinkTime);
+
+  if (CB.lastIntentId) trackEvent('chatbot', 'intent_matched', CB.lastIntentId);
 
   CB.history.push({ role: 'bot', text: response, ts: Date.now() });
   saveHistory();
@@ -2037,6 +2093,10 @@ function toggleChatbot() {
     document.getElementById('cbBadge').style.display = 'none';
     if (!CB.greeted) greet();
     setTimeout(() => document.getElementById('cbInput')?.focus(), 350);
+    if (window.innerWidth <= 480) document.body.style.overflow = 'hidden';
+    trackEvent('chatbot', 'open', 'launcher_click');
+  } else {
+    document.body.style.overflow = '';
   }
 }
 
@@ -2044,6 +2104,33 @@ function toggleChatbot() {
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape' && CB.isOpen) toggleChatbot();
 });
+
+// Enter key to send message
+document.getElementById('cbInput')?.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter' && !e.shiftKey) {
+    e.preventDefault();
+    sendCbMessage(null);
+  }
+});
+
+// Fix mobile viewport height for chat window
+function setVh() {
+  document.documentElement.style.setProperty('--vh', window.innerHeight * 0.01 + 'px');
+}
+setVh();
+window.addEventListener('resize', setVh);
+
+// ── Analytics / Lead Tracking ───────────────────────────────
+function trackEvent(category, action, label) {
+  if (typeof gtag !== 'undefined') {
+    gtag('event', action, { event_category: category, event_label: label });
+  }
+  try {
+    const log = JSON.parse(localStorage.getItem('siva_events') || '[]');
+    log.push({ ts: Date.now(), category, action, label });
+    localStorage.setItem('siva_events', JSON.stringify(log.slice(-100)));
+  } catch(err) {}
+}
 
 // ── Persistence ──────────────────────────────────────────────
 function saveHistory() {
