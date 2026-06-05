@@ -8,7 +8,7 @@ A single-page portfolio website built with vanilla HTML, CSS, and JavaScript. No
 
 ## About
 
-Personal portfolio for **Siva Rama Krishna Reddy Kunchala**, a AI Engineer with 3+ years of experience building AWS infrastructure and LLM-powered applications. Currently a Junior AI Engineer at Cogent IBS.
+Personal portfolio for **Siva Rama Krishna Reddy Kunchala**, an AI Engineer with 3+ years of experience building AWS infrastructure and LLM-powered applications. Currently a Junior AI Engineer at Cogent IBS.
 
 ---
 
