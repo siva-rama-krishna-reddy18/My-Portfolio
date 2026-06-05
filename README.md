@@ -14,13 +14,13 @@ Personal portfolio for **Siva Rama Krishna Reddy Kunchala**, an AI Engineer with
 
 ## Features
 
-- **AI Chatbot Assistant** — built-in portfolio assistant that answers recruiter questions about skills, projects, experience, certifications, and scheduling. Supports context-awareness ("tell me more"), recruiter flow ("I want to hire you"), resume download trigger, and Google Calendar booking integration.
-- **Typewriter hero** — animated role titles cycling through AI & Cloud Engineer, MLOps Engineer, etc.
-- **Cinematic scroll animations** — staggered section reveals with directional fade/scale effects.
-- **Responsive design** — fully mobile-optimized including full-height chat panel on small screens.
-- **Resume download modal** — one-click PDF download from nav, hero, or chatbot.
-- **Skill bars** — animated progress bars triggered on scroll.
-- **Floating AI canvas** — animated node graph with floating labels (AI, LLM, RAG, AWS…) in the hero background.
+- **AI Chatbot Assistant** : built-in portfolio assistant that answers recruiter questions about skills, projects, experience, certifications, and scheduling. Supports context-awareness ("tell me more"), recruiter flow ("I want to hire you"), resume download trigger, and Google Calendar booking integration.
+- **Typewriter hero** : animated role titles cycling through AI & Cloud Engineer, MLOps Engineer, etc.
+- **Cinematic scroll animations** : staggered section reveals with directional fade/scale effects.
+- **Responsive design** : fully mobile-optimized including full-height chat panel on small screens.
+- **Resume download modal** : one-click PDF download from nav, hero, or chatbot.
+- **Skill bars** : animated progress bars triggered on scroll.
+- **Floating AI canvas** : animated node graph with floating labels (AI, LLM, RAG, AWS…) in the hero background.
 
 ---
 
@@ -40,20 +40,20 @@ Personal portfolio for **Siva Rama Krishna Reddy Kunchala**, an AI Engineer with
 
 ## Projects Showcased
 
-### ⚡ ApplyEdge — AI Resume Platform
+### ⚡ ApplyEdge - AI Resume Platform
 AI-powered resume scoring, ATS audit, job match analysis, cover letter generation, and interview prep. Powered by Groq LLaMA 3.3 70B.
 - **Stack:** FastAPI · React · Groq LLaMA 3.3 · Adzuna API · Vercel · Render
 - **Live:** [applyedge.onrender.com](https://applyedge.onrender.com)
 
-### 🍜 FoodyBuddy — AI Food Ordering
+### 🍜 FoodyBuddy - AI Food Ordering
 Conversational ordering system using 384D vector embeddings for fuzzy intent detection. Sub-500ms response in production.
 - **Stack:** LangChain · Llama 3.2 · MongoDB · Node.js · Socket.io · React
 
-### 🔍 QueryVault — RAG Document Search
+### 🔍 QueryVault - RAG Document Search
 Paste a URL or upload a PDF and ask any question — returns answers with exact source citations using FAISS + LangChain retrieval chains.
 - **Stack:** FAISS · Groq LLaMA 3 · HuggingFace · LangChain · FastAPI · React
 
-### 🎙️ AI Audio Analyzer — GCP
+### 🎙️ AI Audio Analyzer - GCP
 Serverless event-driven app for speech-to-text, text-to-speech, and real-time sentiment detection.
 - **Stack:** GCP · Python · Cloud Functions · Cloud Storage · Google Cloud APIs
 - **Live:** [audio-analyzer-260842392440.us-central1.run.app](https://audio-analyzer-260842392440.us-central1.run.app)
@@ -80,7 +80,7 @@ The built-in AI assistant handles 30+ intents including:
 | Fonts | Sora (Google Fonts) |
 | Animations | CSS keyframes + IntersectionObserver |
 | Chatbot | Keyword intent matching engine (no external API required) |
-| Deployment | Static file — host anywhere |
+| Deployment | Static file - host anywhere |
 
 ---
 
@@ -100,12 +100,12 @@ Or deploy to GitHub Pages, Vercel, Netlify, or any static host.
 
 ## Certifications
 
-- AWS Cloud Practitioner — Amazon Web Services (2024)
-- GitHub Foundations — GitHub (2024)
-- Oracle AI Foundations — Oracle (2024)
-- DevOps Foundations CI/CD — DevOps Institute (2024)
-- Python Foundation — Python Institute (2023)
-- AWS Cloud Tech Essentials — Amazon Web Services (2023)
+- AWS Cloud Practitioner - Amazon Web Services (2024)
+- GitHub Foundations - GitHub (2024)
+- Oracle AI Foundations - Oracle (2024)
+- DevOps Foundations CI/CD - DevOps Institute (2024)
+- Python Foundation - Python Institute (2023)
+- AWS Cloud Tech Essentials - Amazon Web Services (2023)
 
 ---
 
