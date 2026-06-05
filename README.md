@@ -1,14 +1,14 @@
-# SR Krishna Reddy — AI & Cloud Engineer Portfolio
+# Siva — AI Engineer Portfolio
 
 A single-page portfolio website built with vanilla HTML, CSS, and JavaScript. No frameworks, no build tools — just fast, clean, and fully responsive.
 
-**Live at:** [your-portfolio-url.com](https://github.com/siva-rama-krishna-reddy18)
+**Live at:** [https://siva-rama-krishna-reddy18.github.io/My-Portfolio/]
 
 ---
 
 ## About
 
-Personal portfolio for **Siva Rama Krishna Reddy Kunchala**, a Hybrid Cloud & AI Engineer with 3+ years of experience building AWS infrastructure and LLM-powered applications. Currently a Junior AI Engineer at Cogent IBS.
+Personal portfolio for **Siva Rama Krishna Reddy Kunchala**, a AI Engineer with 3+ years of experience building AWS infrastructure and LLM-powered applications. Currently a Junior AI Engineer at Cogent IBS.
 
 ---
 
